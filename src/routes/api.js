@@ -11,6 +11,7 @@ router.post("/updateProfile", authVerifyMiddleware, profileController.updateProf
 router.delete("/deleteProfile", authVerifyMiddleware, profileController.deleteProfile)
 
 router.post("/emailVerification", authVerifyMiddleware, profileController.emailVerification)
+router.post("/OTPVerification", authVerifyMiddleware, profileController.OTPVerification)
 router.post("/createTodoList",authVerifyMiddleware, todoListController.createTodo)
 
 

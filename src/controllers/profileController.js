@@ -100,3 +100,28 @@ exports.emailVerification = async (req, res) => {
     }
     
 }
+
+
+
+
+exports.OTPVerification = async (req, res) => {
+    try{
+        let Email = req.body.Email
+        let OTP = req.body.OTP
+        let Status = 0;
+        let updateStatus = 1;
+
+        const OTPData = await OTPModel.find({Email:Email, OTP:OTP, Status:Status}).count()
+        if(OTPData === 1) {
+            const updateStatusData = await OTPModel.updateOne({Email:Email, OTP:OTP, Status:Status}, {Status:updateStatus})
+            res.status(200).json({status: 'success',data:updateStatusData})
+        }else {
+            res.status(200).json({status: 'fail'})
+        }
+
+    }catch(e) {
+        console.log(e)
+
+    }
+    
+}
